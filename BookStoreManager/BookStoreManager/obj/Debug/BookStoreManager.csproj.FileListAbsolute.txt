@@ -2,3 +2,4 @@ D:\Projects\Github\BookStoreManager\BookStoreManager\BookStoreManager\bin\BookSt
 D:\Projects\Github\BookStoreManager\BookStoreManager\BookStoreManager\bin\BookStoreManager.pdb
 D:\Projects\Github\BookStoreManager\BookStoreManager\BookStoreManager\obj\Debug\BookStoreManager.dll
 D:\Projects\Github\BookStoreManager\BookStoreManager\BookStoreManager\obj\Debug\BookStoreManager.pdb
+D:\Projects\Github\BookStoreManager\BookStoreManager\BookStoreManager\obj\Debug\BookStoreManager.csprojResolveAssemblyReference.cache

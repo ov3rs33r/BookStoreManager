@@ -8,7 +8,7 @@
         var $q = common.$q;
 
         var service = {
-            getPeople: getPeople,
+            getFeaturedBooks: getFeaturedBooks,
             getMessageCount: getMessageCount
         };
 
@@ -16,17 +16,17 @@
 
         function getMessageCount() { return $q.when(72); }
 
-        function getPeople() {
-            var people = [
-                { firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida' },
-                { firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California' },
-                { firstName: 'Colleen', lastName: 'Jones', age: 21, location: 'New York' },
-                { firstName: 'Madelyn', lastName: 'Green', age: 18, location: 'North Dakota' },
-                { firstName: 'Ella', lastName: 'Jobs', age: 18, location: 'South Dakota' },
-                { firstName: 'Landon', lastName: 'Gates', age: 11, location: 'South Carolina' },
-                { firstName: 'Haley', lastName: 'Guthrie', age: 35, location: 'Wyoming' }
+        function getFeaturedBooks() {
+            var featuredBooks = [
+                { title: 'War and Peace', author: 'Tolstoy  ', price: 25, description: 'Florida' },
+                { title: 'The Hours', author: 'Cunningham', price: 31, description: 'California' },
+                { title: 'The Trial', author: 'Kafka', price: 21, description: 'New York' },
+                { title: 'Necromancer', author: 'Gibson', price: 18, description: 'North Dakota' },
+                { title: 'Snow Crash', author: 'Stephenson', price: 18, description: 'South Dakota' },
+                { title: 'Goedel, Escher, Bach', author: 'Hofstadter', price: 11, description: 'South Carolina' },
+                { title: "Darwin's Dangerous Idea", author: 'Dennett', price: 35, description: 'Wyoming' }
             ];
-            return $q.when(people);
+            return $q.when(featuredBooks);
         }
     }
 })();
