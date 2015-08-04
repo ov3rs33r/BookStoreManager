@@ -27,5 +27,43 @@ namespace BookService
                 }
             }
         }
+
+        internal List<Book> GetAllBooks()
+        {
+            using (var db = DbConnectionFactory.OpenDbConnection())
+            {
+                return db.Select<Book>();
+            }
+        }
+
+        internal Book GetBookByTitle(string title)
+        {
+            using (var db = DbConnectionFactory.OpenDbConnection())
+            {
+                return db.Select<Book>(e => e.Title == title).FirstOrDefault();
+            }
+        }
+
+        internal Book GetBookById(int id)
+        {
+            using (var db = DbConnectionFactory.OpenDbConnection())
+            {
+                return db.Select<Book>(e => e.Id == id).FirstOrDefault();
+            }
+        }
+
+        public void DeleteBook(Book request)
+        {
+            using (var db = DbConnectionFactory.OpenDbConnection())
+            {
+                db.Delete(request);
+            }
+        }
+
+        public void DeleteBook(int id)
+        {
+            DeleteBook(new Book { Id = id });
+        }
+
     }
 }

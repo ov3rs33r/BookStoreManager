@@ -15,7 +15,10 @@
         var service = {
             getFeaturedBooks: getFeaturedBooks,
             getMessageCount: getMessageCount,
-            saveNewBook : saveNewBook
+            saveNewBook: saveNewBook,
+            getAllBooks: getAllBooks,
+            getBook: getBook,
+            deleteBook: deleteBook
         };
 
         return service;
@@ -30,6 +33,50 @@
                 function(data, status) {
                     logError("New book not saved!");
                 }
+                )
+        }
+
+        function getBook(book) {
+            log(baseUrl + "book/title/" + book.title + "?format=json");
+            return $http.get(baseUrl + "book/title/" + book.title + "?format=json")
+                .then(
+                    function(result) {
+                        book.id = result.data.Id;
+                        book.title = result.data.Title;
+                        book.author = result.data.Author;
+                        book.price = result.data.Price;
+                        log("Success. Retrieved " + JSON.stringify(book));
+                    },
+                    function(data, status) {
+                        logError("Retrieve book failed.");
+                    }
+                )
+        }
+
+        function getAllBooks() {
+            return $http.get(baseUrl + "Book")
+                .then(
+                    function(result) {
+                        log("Successfully retrieved all books");
+                        //log(result.data);
+                        return result.data;
+                    },
+                    function(data, status) {
+                        logError("Unable to retrieve all books");
+                    }
+                )
+        }
+
+        function deleteBook(book) {
+            log(baseUrl + "book/" + book.id);
+            return $http.delete(baseUrl + "book/" + book.id)
+                .then(
+                    function(result) {
+                        log("Delete, success! " + JSON.stringify(book));
+                    },
+                    function(data, status) {
+                        logError("Unable to delete book.");
+                    }
                 )
         }
 

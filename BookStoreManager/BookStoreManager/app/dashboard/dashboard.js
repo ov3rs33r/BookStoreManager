@@ -8,18 +8,15 @@
         var log = getLogFn(controllerId);
 
         var vm = this;
-        vm.news = {
-            title: 'Book Store Manager',
-            description: 'Hot Towel Angular is a SPA template for Angular developers.'
-        };
-        vm.messageCount = 0;
+        vm.bookCount = 0;
         vm.featuredBooks = [];
+        vm.newBooks = [];
         vm.title = 'Dashboard';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getFeaturedBooks()];
+            var promises = [getMessageCount(), getFeaturedBooks(), getAllBooks()];
             common.activateController(promises, controllerId)
                 .then(function () { log('Activated Dashboard View'); });
         }
@@ -34,6 +31,18 @@
             return datacontext.getFeaturedBooks().then(function (data) {
                 return vm.featuredBooks = data;
             });
+        }
+
+        function getAllBooks() {
+            return datacontext.getAllBooks()
+                .then(function(results) {
+                        return vm.newBooks = results;
+                })
+                .then(function() {
+                    if (vm.newBooks != null && vm.newBooks.length > 0) {
+                        return vm.bookCount = vm.newBooks.length;
+                    }
+                })
         }
     }
 })();

@@ -17,7 +17,7 @@
             activate();
 
             function activate() {
-                var promises = []; //[getAllBooks()];
+                var promises = [getAllBooks()];
                 common.activateController(promises, controllerId)
                     .then(function() { log('Activated Book Editor View'); });
             }
@@ -33,15 +33,24 @@
             }
 
             function getBook() {
-
+                datacontext.getBook(vm.book);
             }
 
             function getAllBooks() {
-
+                return datacontext.getAllBooks()
+                    .then(function(results) {
+                        vm.books = results;
+                    });
             }
 
             function deleteBook() {
-
+                datacontext.deleteBook(vm.book)
+                    .then(function() {
+                        vm.book = new model.Book();
+                    })
+                    .then(function() {
+                        getAllBooks();
+                    });
             }
         }
     }
